@@ -77,7 +77,17 @@ async function pickModel() {
     return chosen;
 }
 
-app.get("/", (_req, res) => res.json({ ok: true, service: "AI Studio backend" }));
+   const path = require("path");
+
+   app.get("/", (req, res) => {
+     res.sendFile(path.join(__dirname, "index.html"));
+   });
+   app.get("/style.css", (req, res) => {
+     res.sendFile(path.join(__dirname, "style.css"));
+   });
+   app.get("/script.js", (req, res) => {
+     res.sendFile(path.join(__dirname, "script.js"));
+   });
 
 // 1) Image job start karo
 app.post("/api/image", async (req, res) => {
