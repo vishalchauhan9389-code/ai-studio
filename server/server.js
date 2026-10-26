@@ -293,3 +293,4 @@ app.get("/api/video/:id", async (req, res) => {
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => console.log(`AI Studio backend running on port ${PORT}`));
+module.exports = app;
