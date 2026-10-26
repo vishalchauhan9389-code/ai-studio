@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>AI Studio</title>
+
+    <link
+        rel="stylesheet"
+        href="style.css"
+    >
+</head>
+
+<body>
+
+    <!-- ================================
+         NAVBAR
+    ================================= -->
+
+    <header class="navbar">
+
+        <div class="logo">
+            <span class="logo-icon">✦</span>
+            <span>AI Studio</span>
+        </div>
+
+        <nav>
+            <a href="#imagePanel">Image</a>
+            <a href="#videoPanel">Video</a>
+            <a href="#gallery">Gallery</a>
+        </nav>
+
+       <button class="sign-in-btn" type="button">
+    Sign In
+</button>
+
+<input
+    type="file"
+    id="galleryImageInput"
+    accept="image/*"
+    hidden
+>
+
+    </header>
+
+
+    <!-- ================================
+         MAIN
+    ================================= -->
+
+    <main>
+
+        <!-- HERO -->
+
+        <section class="hero">
+
+            <div class="hero-badge">
+                ✦ AI CREATIVE STUDIO
+            </div>
+
+            <h1>
+                Create anything<br>
+                <span>with AI.</span>
+            </h1>
+
+            <p>
+                Turn your ideas into stunning images and videos
+                using simple prompts.
+            </p>
+
+        </section>
+
+
+        <!-- ================================
+             CREATIVE WORKSPACE
+        ================================= -->
+
+        <section class="workspace">
+
+            <div class="generator-card">
+
+                <!-- TABS -->
+
+               <div class="tabs">
+
+    <button
+        id="imageTab"
+        class="active"
+        type="button"
+    >
+        ✦ Image
+    </button>
+
+    <button
+        id="videoTab"
+        type="button"
+    >
+        ▶ Video
+    </button>
+
+</div>
+
+                <!-- ============================
+                     IMAGE PANEL
+                ============================= -->
+
+                <div id="imagePanel">
+
+                    <div class="panel-heading">
+
+                        <span class="panel-icon">✦</span>
+
+                        <div>
+                            <h2>Create an Image</h2>
+
+                            <p>
+                                Describe the image you want to create.
+                            </p>
+                        </div>
+
+                    </div>
+
+
+                    <label for="prompt">
+                        Describe your idea
+                    </label>
+
+                    <textarea
+                        id="prompt"
+                        placeholder="A futuristic city at sunset, cinematic lighting..."
+                    ></textarea>
+
+
+                    <div class="options-row">
+
+                        <div class="option-box">
+
+                            <label for="style">
+                                Style
+                            </label>
+
+                            <select id="style">
+
+                                <option value="realistic">
+                                    Realistic
+                                </option>
+
+                                <option value="cinematic">
+                                    Cinematic
+                                </option>
+
+                                <option value="anime">
+                                    Anime
+                                </option>
+
+                                <option value="3d">
+                                    3D
+                                </option>
+
+                                <option value="illustration">
+                                    Illustration
+                                </option>
+
+                            </select>
+
+                        </div>
+
+
+                        <div class="option-box">
+
+                            <label for="aspectRatio">
+                                Aspect Ratio
+                            </label>
+
+                            <select id="aspectRatio">
+
+                                <option value="1:1">
+                                    1 : 1
+                                </option>
+
+                                <option value="16:9">
+                                    16 : 9
+                                </option>
+
+                                <option value="9:16">
+                                    9 : 16
+                                </option>
+
+                                <option value="4:5">
+                                    4 : 5
+                                </option>
+
+                            </select>
+
+                        </div>
+
+                    </div>
+
+
+                    <button
+                        id="generateBtn"
+                        type="button"
+                    >
+                        ✦ Generate Image
+                    </button>
+
+
+                    <p class="panel-note">
+                        Demo mode • No API credits required
+                    </p>
+
+                </div>
+
+
+                <!-- ============================
+                     VIDEO PANEL
+                ============================= -->
+
+                <div
+                    id="videoPanel"
+                    style="display: none;"
+                >
+
+                    <div class="panel-heading">
+
+                        <span class="panel-icon">▶</span>
+
+                        <div>
+                            <h2>Create a Video</h2>
+
+                            <p>
+                                Turn an image and prompt into a video concept.
+                            </p>
+                        </div>
+
+                    </div>
+
+
+                    <label for="videoPrompt">
+                        Describe your video
+                    </label>
+
+                    <textarea
+                        id="videoPrompt"
+                        placeholder="A cinematic camera movement through a futuristic city..."
+                    ></textarea>
+
+
+                    <div class="video-upload-box">
+
+                        <label for="imageUpload">
+                            Upload an image
+                        </label>
+
+                        <input
+                            id="imageUpload"
+                            type="file"
+                            accept="image/*"
+                        >
+
+                        <img
+                            id="uploadPreview"
+                            alt="Selected image preview"
+                        >
+
+                    </div>
+
+
+                    <button
+                        id="generateVideo"
+                        type="button"
+                    >
+                        ▶ Generate Video
+                    </button>
+
+
+                    <p class="panel-note">
+                        Video generation can be connected later.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================================
+             RESULTS / GALLERY
+        ================================= -->
+
+        <section
+            class="result-section"
+            id="gallery"
+        >
+
+            <div class="section-header">
+
+                <div>
+
+                    <span class="section-kicker">
+                        YOUR CREATIONS
+                    </span>
+
+                    <h2>
+                        Generated results
+                    </h2>
+
+                    <p>
+                        Your generated and uploaded images appear here.
+                    </p>
+
+                </div>
+
+
+                <button
+                    id="galleryAddButton"
+                    class="upload-gallery-btn"
+                    type="button"
+                    
+                >
+                    
+                </button>
+
+            </div>
+
+
+            <div
+                id="resultGrid"
+                class="result-grid"
+            >
+
+                <div class="empty-state">
+
+                    <div class="empty-icon">
+                        ✦
+                    </div>
+
+                    <h3>
+                        Your creations will appear here
+                    </h3>
+
+                    <p>
+                        Enter a prompt above and generate your first image.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================================
+             FEATURES
+        ================================= -->
+
+        <section class="features-section">
+
+            <div class="feature-card">
+
+                <div class="feature-icon">
+                    ✦
+                </div>
+
+                <h3>
+                    AI Images
+                </h3>
+
+                <p>
+                    Create unique images from simple text descriptions.
+                </p>
+
+            </div>
+
+
+            <div class="feature-card">
+
+                <div class="feature-icon">
+                    ▶
+                </div>
+
+                <h3>
+                    AI Videos
+                </h3>
+
+                <p>
+                    Turn your creative ideas and images into video concepts.
+                </p>
+
+            </div>
+
+
+            <div class="feature-card">
+
+                <div class="feature-icon">
+                    ⚡
+                </div>
+
+                <h3>
+                    Fast Creation
+                </h3>
+
+                <p>
+                    Keep your creative workflow simple and organized.
+                </p>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- ================================
+         FOOTER
+    ================================= -->
+
+    <footer class="footer">
+
+        <div class="logo">
+
+            <span class="logo-icon">
+                ✦
+            </span>
+
+            <span>
+                AI Studio
+            </span>
+
+        </div>
+
+        <p>
+            Create, experiment and bring ideas to life with AI.
+        </p>
+
+    </footer>
+
+
+    <!-- JAVASCRIPT -->
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>
